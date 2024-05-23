@@ -1,0 +1,17 @@
+E:\Демка\xyz\xyz\bin\Debug\xyz.exe.config
+E:\Демка\xyz\xyz\bin\Debug\xyz.exe
+E:\Демка\xyz\xyz\bin\Debug\xyz.pdb
+E:\Демка\xyz\xyz\obj\Debug\xyz.csproj.AssemblyReference.cache
+E:\Демка\xyz\xyz\obj\Debug\MainWindow.g.cs
+E:\Демка\xyz\xyz\obj\Debug\Window1.g.cs
+E:\Демка\xyz\xyz\obj\Debug\App.g.cs
+E:\Демка\xyz\xyz\obj\Debug\xyz_MarkupCompile.cache
+E:\Демка\xyz\xyz\obj\Debug\xyz_MarkupCompile.lref
+E:\Демка\xyz\xyz\obj\Debug\MainWindow.baml
+E:\Демка\xyz\xyz\obj\Debug\Window1.baml
+E:\Демка\xyz\xyz\obj\Debug\xyz.g.resources
+E:\Демка\xyz\xyz\obj\Debug\xyz.Properties.Resources.resources
+E:\Демка\xyz\xyz\obj\Debug\xyz.csproj.GenerateResource.cache
+E:\Демка\xyz\xyz\obj\Debug\xyz.csproj.CoreCompileInputs.cache
+E:\Демка\xyz\xyz\obj\Debug\xyz.exe
+E:\Демка\xyz\xyz\obj\Debug\xyz.pdb

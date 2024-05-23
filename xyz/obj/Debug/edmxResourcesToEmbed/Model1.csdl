@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="demkamomentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Order_User">
+    <Key>
+      <PropertyRef Name="ID_Order_User" />
+    </Key>
+    <Property Name="ID_Order_User" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Order_ID" Type="Int32" Nullable="false" />
+    <Property Name="User_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Orderr" Relationship="Self.FK__Order_Use__Order__48CFD27E" FromRole="Order_User" ToRole="Orderr" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Order_Use__User___49C3F6B7" FromRole="Order_User" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Orderr">
+    <Key>
+      <PropertyRef Name="ID_Order" />
+    </Key>
+    <Property Name="ID_Order" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Order_Number" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Articule_Product" Type="Int32" />
+    <NavigationProperty Name="Order_User" Relationship="Self.FK__Order_Use__Order__48CFD27E" FromRole="Orderr" ToRole="Order_User" />
+    <NavigationProperty Name="Products" Relationship="Self.FK__Orderr__Articule__45F365D3" FromRole="Orderr" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="Articule" />
+    </Key>
+    <Property Name="Articule" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name_Product" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Width" Type="Int32" Nullable="false" />
+    <Property Name="Height" Type="Int32" Nullable="false" />
+    <Property Name="Count_Product" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Orderr" Relationship="Self.FK__Orderr__Articule__45F365D3" FromRole="Products" ToRole="Orderr" />
+    <NavigationProperty Name="Rullons_In_Product" Relationship="Self.FK__Rullons_I__Artic__3F466844" FromRole="Products" ToRole="Rullons_In_Product" />
+  </EntityType>
+  <EntityType Name="Rullons_In_Product">
+    <Key>
+      <PropertyRef Name="ID_Rullons_In_Product" />
+    </Key>
+    <Property Name="ID_Rullons_In_Product" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Articule_Rullon" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="Articule_Product" Type="Int32" />
+    <NavigationProperty Name="Products" Relationship="Self.FK__Rullons_I__Artic__3F466844" FromRole="Rullons_In_Product" ToRole="Products" />
+    <NavigationProperty Name="Rulons" Relationship="Self.FK__Rullons_I__Artic__3E52440B" FromRole="Rullons_In_Product" ToRole="Rulons" />
+  </EntityType>
+  <EntityType Name="Rulons">
+    <Key>
+      <PropertyRef Name="Articule" />
+    </Key>
+    <Property Name="Articule" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Coctav" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Color" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Width" Type="Int32" Nullable="false" />
+    <Property Name="Height" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Rullons_In_Product" Relationship="Self.FK__Rullons_I__Artic__3E52440B" FromRole="Rulons" ToRole="Rullons_In_Product" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID_User" />
+    </Key>
+    <Property Name="ID_User" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Login_User" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password_User" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Role_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Order_User" Relationship="Self.FK__Order_Use__User___49C3F6B7" FromRole="User" ToRole="Order_User" />
+    <NavigationProperty Name="UserRole" Relationship="Self.FK__User__Role_ID__4316F928" FromRole="User" ToRole="UserRole" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="ID_Role" />
+    </Key>
+    <Property Name="ID_Role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name_Role" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK__User__Role_ID__4316F928" FromRole="UserRole" ToRole="User" />
+  </EntityType>
+  <Association Name="FK__Order_Use__Order__48CFD27E">
+    <End Role="Orderr" Type="Self.Orderr" Multiplicity="1" />
+    <End Role="Order_User" Type="Self.Order_User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orderr">
+        <PropertyRef Name="ID_Order" />
+      </Principal>
+      <Dependent Role="Order_User">
+        <PropertyRef Name="Order_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order_Use__User___49C3F6B7">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Order_User" Type="Self.Order_User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID_User" />
+      </Principal>
+      <Dependent Role="Order_User">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Orderr__Articule__45F365D3">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="Orderr" Type="Self.Orderr" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="Articule" />
+      </Principal>
+      <Dependent Role="Orderr">
+        <PropertyRef Name="Articule_Product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Rullons_I__Artic__3F466844">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="Rullons_In_Product" Type="Self.Rullons_In_Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="Articule" />
+      </Principal>
+      <Dependent Role="Rullons_In_Product">
+        <PropertyRef Name="Articule_Product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Rullons_I__Artic__3E52440B">
+    <End Role="Rulons" Type="Self.Rulons" Multiplicity="0..1" />
+    <End Role="Rullons_In_Product" Type="Self.Rullons_In_Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rulons">
+        <PropertyRef Name="Articule" />
+      </Principal>
+      <Dependent Role="Rullons_In_Product">
+        <PropertyRef Name="Articule_Rullon" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__User__Role_ID__4316F928">
+    <End Role="UserRole" Type="Self.UserRole" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRole">
+        <PropertyRef Name="ID_Role" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Role_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="demkamomentEntities3" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Order_User" EntityType="Self.Order_User" />
+    <EntitySet Name="Orderr" EntityType="Self.Orderr" />
+    <EntitySet Name="Products" EntityType="Self.Products" />
+    <EntitySet Name="Rullons_In_Product" EntityType="Self.Rullons_In_Product" />
+    <EntitySet Name="Rulons" EntityType="Self.Rulons" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="User" EntityType="Self.User" />
+    <EntitySet Name="UserRole" EntityType="Self.UserRole" />
+    <AssociationSet Name="FK__Order_Use__Order__48CFD27E" Association="Self.FK__Order_Use__Order__48CFD27E">
+      <End Role="Orderr" EntitySet="Orderr" />
+      <End Role="Order_User" EntitySet="Order_User" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order_Use__User___49C3F6B7" Association="Self.FK__Order_Use__User___49C3F6B7">
+      <End Role="User" EntitySet="User" />
+      <End Role="Order_User" EntitySet="Order_User" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Orderr__Articule__45F365D3" Association="Self.FK__Orderr__Articule__45F365D3">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Orderr" EntitySet="Orderr" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Rullons_I__Artic__3F466844" Association="Self.FK__Rullons_I__Artic__3F466844">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Rullons_In_Product" EntitySet="Rullons_In_Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Rullons_I__Artic__3E52440B" Association="Self.FK__Rullons_I__Artic__3E52440B">
+      <End Role="Rulons" EntitySet="Rulons" />
+      <End Role="Rullons_In_Product" EntitySet="Rullons_In_Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK__User__Role_ID__4316F928" Association="Self.FK__User__Role_ID__4316F928">
+      <End Role="UserRole" EntitySet="UserRole" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
